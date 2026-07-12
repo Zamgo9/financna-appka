@@ -160,8 +160,8 @@
      Origin sits low so bottom on-screen text stays clear of the caption
      while the top grows into headroom. */
   .frame.fz{transform-origin:50% 74%}
-  .frame.fz.is-active{animation:u-zoomfr var(--zd,6s) linear both}
-  @keyframes u-zoomfr{from{transform:scale(1)}to{transform:scale(1.065)}}
+  .frame.fz.is-active{animation:u-zoomfr var(--zd,6s) cubic-bezier(.12,.66,.3,1) both}
+  @keyframes u-zoomfr{from{transform:scale(1)}to{transform:scale(1.13)}}
   .monitor{position:relative;width:min(54%,380px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
   .mbar{display:flex;align-items:center;gap:5px;background:#1a2138;border:2px solid #3a4468;
     border-bottom:0;border-radius:10px 10px 0 0;padding:6px 10px}
