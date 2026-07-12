@@ -337,6 +337,9 @@
   body.bare .caption{display:none!important}
   body.bare .stage{width:100vw;height:100vh;aspect-ratio:auto;border-radius:0}
   body.bare.caps .caption{display:flex!important}
+  /* export captions: readable at video size (editor UI keeps the small ones) */
+  body.bare .caption{bottom:2.8%}
+  body.bare .caption span{font-size:clamp(14px,2.5vw,24px);padding:.4em .95em;border-radius:.45em}
 
   @media (prefers-reduced-motion:reduce){
     .frame *{animation:none!important}
