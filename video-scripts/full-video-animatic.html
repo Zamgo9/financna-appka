@@ -32,13 +32,6 @@
     color:#fff;isolation:isolate;font-family:var(--sans)}
   .grain{position:absolute;inset:0;pointer-events:none;z-index:40;mix-blend-mode:multiply;
     background:radial-gradient(120% 120% at 50% 38%,transparent 55%,rgba(0,0,0,.55) 100%)}
-  .hud{position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;
-    padding:14px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-    color:rgba(255,255,255,.66);text-shadow:0 1px 3px rgba(0,0,0,.6)}
-  .rec{display:inline-flex;align-items:center;gap:7px}
-  .rec i{width:8px;height:8px;border-radius:50%;background:var(--red);
-    box-shadow:0 0 8px var(--red);animation:blink 1.4s steps(1) infinite}
-  @keyframes blink{50%{opacity:.15}}
   .caption{position:absolute;left:0;right:0;bottom:16px;z-index:30;display:flex;justify-content:center;padding:0 7%}
   .caption span{background:rgba(6,8,16,.72);backdrop-filter:blur(3px);padding:6px 13px;border-radius:8px;
     font-size:clamp(10px,1.7vw,13px);font-weight:500;line-height:1.35;text-align:center;max-width:54ch;
@@ -185,6 +178,11 @@
   .f1 .smile .curve{stroke-dasharray:620;stroke-dashoffset:620}
   .f1 .smile .head{stroke-dasharray:90;stroke-dashoffset:90}
   .burst{position:absolute;right:18%;top:22%;width:10px;height:10px;border-radius:50%;background:var(--gold);opacity:0;box-shadow:0 0 12px var(--gold)}
+  .f1 .amzmark{position:absolute;top:12%;left:9%;text-align:left}
+  .f1 .amzmark b{font-weight:900;font-size:clamp(20px,4.8vw,44px);letter-spacing:-.05em;color:#fff}
+  .f1 .amzmark svg{display:block;width:72%;height:16px;margin:2px 0 0 4%}
+  .f1 .amzmark svg path{fill:none;stroke:#ff9900;stroke-width:6;stroke-linecap:round}
+  .f1.is-active .amzmark{animation:u-drop .8s cubic-bezier(.2,.8,.2,1) .35s both}
   .f1.is-active .start{animation:u-pop .7s cubic-bezier(.2,.8,.2,1) .2s both}
   .f1.is-active .smile .curve{animation:u-draw 1.2s ease-in-out .8s both}
   .f1.is-active .smile .head{animation:u-draw .3s ease 1.85s both}
@@ -216,6 +214,11 @@
   .f2b .folio{position:absolute;inset:0;z-index:5;padding:16% 12% 10%;display:flex;flex-direction:column;
     justify-content:center;gap:4px;background:#0d1120;opacity:0}
   .f2b.is-active .folio{animation:u-fade .4s ease 2.6s both}
+  .f2b .folio .amzrow{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+  .f2b .folio .amzrow .aw{position:relative;font-weight:900;font-size:clamp(10px,1.9vw,16px);letter-spacing:-.04em;color:#fff}
+  .f2b .folio .amzrow .aw svg{position:absolute;left:6%;bottom:-5px;width:70%;height:8px}
+  .f2b .folio .amzrow .aw svg path{fill:none;stroke:#ff9900;stroke-width:7;stroke-linecap:round}
+  .f2b .folio .amzrow .tk{font-family:var(--mono);font-size:clamp(6px,1.1vw,9px);color:rgba(255,255,255,.5)}
   .f2b .folio .lbl{font-family:var(--mono);font-size:clamp(6px,1.1vw,9px);letter-spacing:.26em;color:rgba(255,255,255,.55)}
   .f2b .folio b{color:var(--gold);font-weight:900;font-size:clamp(13px,2.6vw,22px);font-variant-numeric:tabular-nums}
   .f2b .folio .pct{font-family:var(--mono);font-size:clamp(7px,1.3vw,10px);color:var(--green)}
@@ -331,11 +334,11 @@
   body.bare .player{border:0;border-radius:0;box-shadow:none;background:#000}
   body.bare .controls,body.bare .chapters,body.bare .legend,body.bare .foot,
   body.bare .eyebrow,body.bare h1,body.bare .lede,body.bare .nowshot,
-  body.bare .hud,body.bare .caption{display:none!important}
+  body.bare .caption{display:none!important}
   body.bare .stage{width:100vw;height:100vh;aspect-ratio:auto;border-radius:0}
 
   @media (prefers-reduced-motion:reduce){
-    .frame *{animation:none!important}.rec i{animation:none}
+    .frame *{animation:none!important}
     .orbit{animation:none}.grow-pulse{animation:none}
   }
   @media (max-width:560px){.track{order:4;flex-basis:100%}}
@@ -350,10 +353,10 @@
 
   <div class="player">
     <div class="stage" id="stage">
-      <div class="hud"><span class="rec"><i></i><span id="scenetag">SCENE 01 · COLD OPEN</span></span><span id="shotno">SHOT 1 / 75</span></div>
 
       <!-- ============================ SCENE 1 ============================ -->
       <div class="frame f1" data-i="0">
+        <div class="amzmark"><b>amazon</b><svg viewBox="0 0 100 26"><path d="M6 6 C 34 28, 64 28, 87 9"/><path d="M79 6 L87 9 L82 18"/></svg></div>
         <div class="start"><div class="yr">1997</div><div class="num-s">$1,000</div></div>
         <svg class="smile" viewBox="0 0 360 200" preserveAspectRatio="none">
           <path class="curve" d="M14 152 C 120 210, 245 172, 338 44"/>
@@ -374,7 +377,9 @@
               <div class="appicon">📆</div><div class="appicon">🎮</div><div class="appicon">⚙️</div>
             </div>
             <div class="splash">📈<br>BROKER</div>
-            <div class="folio"><span class="lbl">NET WORTH</span>
+            <div class="folio">
+              <div class="amzrow"><span class="aw">amazon<svg viewBox="0 0 100 26"><path d="M6 6 C 34 28, 64 28, 87 9"/><path d="M79 6 L87 9 L82 18"/></svg></span><span class="tk">AMZN</span></div>
+              <span class="lbl">NET WORTH</span>
               <b><span class="count" data-from="0" data-to="2000000" data-start="2700" data-end="4400" data-prefix="$" data-group="1">$0</span></b>
               <span class="pct">▲ +199,900% all time</span>
               <svg viewBox="0 0 120 40"><path d="M4 34 C 30 32, 55 26, 78 18 S 108 8, 116 5"/></svg>
@@ -858,8 +863,7 @@
 
   var stage=document.getElementById('stage');
   var frames=[].slice.call(stage.querySelectorAll('.frame'));
-  var capEl=document.getElementById('cap'), shotNo=document.getElementById('shotno'),
-      sceneTag=document.getElementById('scenetag'), tcEl=document.getElementById('tc'),
+  var capEl=document.getElementById('cap'), tcEl=document.getElementById('tc'),
       fill=document.getElementById('fill'), track=document.getElementById('track'),
       nowshot=document.getElementById('nowshot'), playBtn=document.getElementById('play'),
       chaptersUl=document.getElementById('chapters'), ticksEl=document.getElementById('ticks');
@@ -937,9 +941,8 @@
   function setFrame(i){
     frames.forEach(function(f){f.classList.remove('is-active');});
     var el=frames[i];void el.offsetWidth;el.classList.add('is-active');
-    capEl.textContent=CAPS[i];shotNo.textContent='SHOT '+(i+1)+' / 75';
-    var sc=sceneOf(i);sceneTag.textContent='SCENE 0'+CHAP[sc][1].replace(/^0/,'')+' · '+CHAP[sc][2].toUpperCase();
-    sceneTag.textContent='SCENE '+CHAP[sc][1]+' · '+CHAP[sc][2].toUpperCase();
+    capEl.textContent=CAPS[i];
+    var sc=sceneOf(i);
     nowshot.innerHTML='Shot '+(i+1)+' · <b>'+LABELS[i]+'</b>';
     chapEls.forEach(function(c,ci){c.classList.toggle('on',ci===sc);});
   }
