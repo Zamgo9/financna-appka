@@ -150,6 +150,17 @@
   .f9s.is-active .Lh{animation:u-left .55s cubic-bezier(.2,.8,.2,1) both}
   .f9s.is-active .Rh{animation:u-right .55s cubic-bezier(.2,.8,.2,1) .12s both}
   .f9s.is-active .vsb{animation:u-pop .5s cubic-bezier(.2,1.4,.3,1) 1.15s both}
+  /* push-in zoom (bigger + easier to read), centered so both halves grow evenly */
+  .f9s{transform-origin:50% 50%}
+  .f9s.is-active{animation:u-zoomf9 3.2s cubic-bezier(.16,.62,.3,1) both}
+  @keyframes u-zoomf9{from{transform:scale(1)}to{transform:scale(1.14)}}
+  /* left title types on as the narration reads it */
+  .f9s .typ{display:inline-block;font-family:var(--mono);font-weight:700;color:var(--gold);
+    font-size:clamp(14px,2.9vw,24px);letter-spacing:.01em;white-space:nowrap;overflow:hidden;
+    vertical-align:bottom;border-right:.11em solid var(--gold);width:0;max-width:100%}
+  .f9s.is-active .typ{animation:u-typ 1.7s steps(23,end) .7s both,u-caret .5s step-end infinite}
+  @keyframes u-typ{from{width:0}to{width:23ch}}
+  @keyframes u-caret{50%{border-color:transparent}}
   .f9s .crowd9{display:flex;flex-wrap:wrap;justify-content:center;width:clamp(80px,16vw,150px);row-gap:2px}
   .f9s .crowd9 span{font-size:clamp(14px,2.8vw,26px);line-height:1.1}
   /* S2-F5: market chart on a monitor + slow zoom */
@@ -565,7 +576,7 @@
         <div class="half Lh">
           <div class="kick c-gold" data-anim="fade" style="--d:.35s">Stock pickers</div>
           <div style="position:relative"><span class="emoji s2">🧍</span><span style="position:absolute;right:-30%;bottom:-8%;font-size:clamp(14px,3vw,28px)">🔍</span></div>
-          <div class="pill c-gold" data-anim="pop" style="--d:.85s">“I can beat the average.”</div>
+          <div class="typ">I can beat the average.</div>
         </div>
         <div class="divide"></div>
         <div class="half Rh">
