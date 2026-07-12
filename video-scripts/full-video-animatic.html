@@ -124,6 +124,61 @@
   @keyframes u-cursor{0%{opacity:0;transform:translate(250px,210px)}14%{opacity:1}
     78%{opacity:1;transform:translate(0,0) scale(1)}88%{opacity:1;transform:translate(0,0) scale(.76)}
     100%{opacity:1;transform:translate(0,0) scale(1)}}
+  /* S2-F3: stock tickers fly one by one into the index basket */
+  .flyst{position:absolute;left:50%;top:-100px;z-index:4;display:grid;place-items:center;
+    width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:6px;
+    background:linear-gradient(var(--gold),#c98a00);border:1px solid var(--gold);color:#181206;
+    font-family:var(--mono);font-size:8px;font-weight:700;opacity:0;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+  .frame.is-active .flyst{animation:u-flyin .85s cubic-bezier(.45,.05,.55,.95) var(--d,1s) both}
+  @keyframes u-flyin{
+    0%{opacity:0;transform:translate(var(--fx,0px),var(--fy,0px)) scale(.4)}
+    14%{opacity:1;transform:translate(var(--fx,0px),var(--fy,0px)) scale(1)}
+    82%{opacity:1;transform:translate(0px,112px) scale(.5)}
+    100%{opacity:0;transform:translate(0px,124px) scale(.28)}}
+  .frame.is-active .bkt{animation:u-pop .5s cubic-bezier(.2,1.4,.3,1) .5s both,u-bkick .45s ease-in-out 1.8s 6}
+  @keyframes u-bkick{0%,100%{transform:none}45%{transform:translateY(6px) scale(1.14,.9)}}
+  /* S2-F4: split screen — stock pickers vs index fund people */
+  .f9s .half{position:absolute;top:0;bottom:0;width:50%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:clamp(10px,2.4vw,20px);padding:0 4%}
+  .f9s .Lh{left:0;background:radial-gradient(80% 80% at 50% 42%,rgba(245,179,1,.16),transparent)}
+  .f9s .Rh{right:0;background:radial-gradient(80% 80% at 50% 42%,rgba(134,59,255,.2),transparent)}
+  .f9s .divide{position:absolute;top:6%;bottom:6%;left:50%;width:2px;
+    background:linear-gradient(transparent,rgba(255,255,255,.5),transparent);transform:translateX(-50%)}
+  .f9s .vsb{position:absolute;left:50%;top:50%;margin:-15px 0 0 -24px;z-index:6;font-family:var(--mono);
+    font-weight:700;font-size:clamp(11px,2vw,15px);letter-spacing:.18em;color:#fff;background:#0a0e1a;
+    border:2px solid rgba(255,255,255,.4);border-radius:999px;padding:6px 11px 6px 13px}
+  .f9s.is-active .Lh{animation:u-left .55s cubic-bezier(.2,.8,.2,1) both}
+  .f9s.is-active .Rh{animation:u-right .55s cubic-bezier(.2,.8,.2,1) .12s both}
+  .f9s.is-active .vsb{animation:u-pop .5s cubic-bezier(.2,1.4,.3,1) 1.15s both}
+  .f9s .crowd9{display:flex;flex-wrap:wrap;justify-content:center;width:clamp(80px,16vw,150px);row-gap:2px}
+  .f9s .crowd9 span{font-size:clamp(14px,2.8vw,26px);line-height:1.1}
+  /* S2-F5: market chart on a monitor + slow zoom */
+  .frame.is-active .zoomin{animation:u-zoomslow var(--zd,4.5s) cubic-bezier(.35,.4,.55,1) both}
+  .zoomin{transform-origin:50% 42%}
+  @keyframes u-zoomslow{from{transform:scale(1)}to{transform:scale(1.08)}}
+  .monitor{position:relative;width:min(54%,380px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
+  .mbar{display:flex;align-items:center;gap:5px;background:#1a2138;border:2px solid #3a4468;
+    border-bottom:0;border-radius:10px 10px 0 0;padding:6px 10px}
+  .mbar i{width:7px;height:7px;border-radius:50%}
+  .mbar i:nth-child(1){background:#ef4444}.mbar i:nth-child(2){background:var(--gold)}.mbar i:nth-child(3){background:var(--green)}
+  .mbar span{margin-left:6px;font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,.5)}
+  .mscreen{position:relative;background:#0d1322;border:2px solid #3a4468;border-top:0;padding:10px 12px 22px;overflow:hidden}
+  .mgrid{position:absolute;inset:0;background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 26px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 34px)}
+  .mscreen svg{position:relative;width:100%;display:block;overflow:visible}
+  .mdot{transform-box:fill-box;transform-origin:center;opacity:0}
+  .frame.is-active .mdot{animation:u-pop .4s 2.25s both,u-mpulse 1.3s ease-in-out 2.7s infinite}
+  @keyframes u-mpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.6)}}
+  .mpill{position:absolute;top:9%;right:5%;background:rgba(10,14,26,.7)}
+  .maxis{position:relative;display:flex;justify-content:space-between;font-family:var(--mono);
+    font-size:7px;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-top:4px}
+  .mticker{position:absolute;left:0;right:0;bottom:0;background:rgba(20,26,46,.92);border-top:1px solid #2a3352;
+    font-family:var(--mono);font-size:7px;letter-spacing:.1em;color:rgba(255,255,255,.6);
+    padding:4px 8px;white-space:nowrap}
+  .mstand{width:64px;height:24px;margin:0 auto;background:linear-gradient(#2a3352,#1a2138);
+    clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
+  .mfoot{width:150px;height:7px;margin:0 auto;border-radius:4px;background:#2a3352}
   @keyframes u-pickin{
     0%{transform:none;background:#2b3350;border-color:#3a4468;color:rgba(255,255,255,.45);box-shadow:none}
     14%{transform:scale(.9);background:#2b3350;border-color:#3a4468;color:rgba(255,255,255,.45)}
@@ -454,19 +509,51 @@
 
       <div class="frame" data-i="8"><div class="center">
         <div class="row"><div class="tilegrid" data-build="tiles" data-cols="5" data-rows="4" data-pick="all" style="width:min(38%,260px)"></div>
-          <div class="col"><div class="emoji" data-anim="pop" style="--d:.6s">🧺</div><div class="kick c-brand">INDEX FUND</div></div></div>
+          <div class="col" style="position:relative"><div class="emoji bkt">🧺</div><div class="kick c-brand" data-anim="fade" style="--d:.7s">INDEX FUND</div>
+            <span class="flyst" style="--d:.9s;--fx:14px;--fy:-38px">AAPL</span>
+            <span class="flyst" style="--d:1.4s;--fx:-62px;--fy:-12px">MSFT</span>
+            <span class="flyst" style="--d:1.9s;--fx:44px;--fy:8px">NVDA</span>
+            <span class="flyst" style="--d:2.4s;--fx:-30px;--fy:30px">AMZN</span>
+            <span class="flyst" style="--d:2.9s;--fx:64px;--fy:-30px">META</span>
+            <span class="flyst" style="--d:3.4s;--fx:-14px;--fy:12px">TSLA</span></div></div>
         <div class="sm" data-anim="rise" style="--d:.8s">Or buy the <b>entire market</b> at once.</div></div></div>
 
-      <div class="frame" data-i="9"><div class="center">
-        <div class="col"><div class="fig" data-anim="slam" style="font-size:clamp(30px,7vw,60px)">🧍</div>
-          <div class="pill c-gold" data-anim="pop" style="--d:.5s">#1</div></div>
-        <div class="row tight" style="opacity:.6">🧍🧍🧍🧍🧍🧍</div>
-        <div class="mid" data-anim="rise" style="--d:.7s">One side says: <span class="c-green">"I can beat the average."</span></div></div></div>
+      <div class="frame f9s" data-i="9">
+        <div class="half Lh">
+          <div class="kick c-gold" data-anim="fade" style="--d:.35s">Stock pickers</div>
+          <div style="position:relative"><span class="emoji s2">🧍</span><span style="position:absolute;right:-30%;bottom:-8%;font-size:clamp(14px,3vw,28px)">🔍</span></div>
+          <div class="pill c-gold" data-anim="pop" style="--d:.85s">“I can beat the average.”</div>
+        </div>
+        <div class="divide"></div>
+        <div class="half Rh">
+          <div class="kick c-brand" data-anim="fade" style="--d:.5s">Index fund people</div>
+          <div class="crowd9"><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span></div>
+          <div class="pill c-brand" data-anim="pop" style="--d:1s">“Just take the average.”</div>
+        </div>
+        <div class="vsb">VS</div></div>
 
-      <div class="frame" data-i="10"><div class="center">
-        <div class="chart"><svg viewBox="0 0 300 150"><line x1="10" y1="140" x2="290" y2="30" stroke="#22c55e" stroke-width="5" stroke-dasharray="360" stroke-dashoffset="360" data-anim="draw" data-dur="1.2s"/></svg>
-          <div class="pill c-green" style="position:absolute;top:6%;right:4%">~7–10% / YR</div></div>
-        <div class="mid" data-anim="rise" style="--d:.6s">The other: <span class="c-green">the average is already amazing.</span></div></div></div>
+      <div class="frame" data-i="10"><div class="center zoomin" style="--zd:4.3s">
+        <div class="monitor" data-anim="rise">
+          <div class="mbar"><i></i><i></i><i></i><span>MARKET INDEX · ALL TIME</span></div>
+          <div class="mscreen"><div class="mgrid"></div>
+            <svg viewBox="0 0 300 130">
+              <defs><linearGradient id="mGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#22c55e" stop-opacity=".26"/>
+                <stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient></defs>
+              <path d="M8 118 L40 106 L64 112 L92 94 L118 99 L150 76 L176 83 L210 56 L238 63 L292 22 L292 130 L8 130 Z"
+                fill="url(#mGrad)" stroke="none" data-anim="fade" style="--d:1.6s;--dur:.9s"/>
+              <path d="M8 118 L40 106 L64 112 L92 94 L118 99 L150 76 L176 83 L210 56 L238 63 L292 22"
+                fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="400" stroke-dashoffset="400"
+                data-anim="draw" style="--dur:1.7s;--d:.55s"/>
+              <circle class="mdot" cx="292" cy="22" r="5" fill="#22c55e"/>
+            </svg>
+            <div class="pill c-green mpill" data-anim="pop" style="--d:2.3s">~7–10% / YR</div>
+            <div class="maxis"><span>1990</span><span>2000</span><span>2010</span><span>2020</span><span>NOW</span></div>
+            <div class="mticker" data-anim="fade" style="--d:.9s">S&amp;P 500 ▲ +0.8% · TOTAL MARKET ▲ +0.6% · DIV YIELD 1.4% · AUTO-INVEST ON</div>
+          </div>
+          <div class="mstand"></div><div class="mfoot"></div>
+        </div>
+        <div class="mid" data-anim="rise" style="--d:.6s;font-size:clamp(15px,3.4vw,30px)">The other: <span class="c-green">the average is already amazing.</span></div></div></div>
 
       <div class="frame m-pro" data-i="11"><div class="center">
         <div data-anim="pop">
