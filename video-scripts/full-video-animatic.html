@@ -336,6 +336,7 @@
   body.bare .eyebrow,body.bare h1,body.bare .lede,body.bare .nowshot,
   body.bare .caption{display:none!important}
   body.bare .stage{width:100vw;height:100vh;aspect-ratio:auto;border-radius:0}
+  body.bare.caps .caption{display:flex!important}
 
   @media (prefers-reduced-motion:reduce){
     .frame *{animation:none!important}
@@ -970,8 +971,19 @@
     if(ev.key==='ArrowLeft')seek(START[Math.max(0,cur-1)]);});
 
   // ---- URL params: ?bare=1 &f=N &play=1 (MP4 export workflow) ----
+  // ---- deterministic export API (used by the MP4 renderer) ----
+  window.__shots={START:START,DUR:DUR,TOTAL:TOTAL};
+  window.__renderSeek=function(fi,ms){
+    playing=false;cancelAnimationFrame(raf);
+    stage.classList.remove('paused');
+    frames.forEach(function(f){f.style.transition='none';});
+    t=START[fi]+Math.min(ms,DUR[fi]-1);cur=-1;render();
+    document.getAnimations().forEach(function(a){try{a.pause();a.currentTime=ms;}catch(e){}});
+  };
+
   var q=new URLSearchParams(location.search);
   if(q.get('bare')==='1')document.body.classList.add('bare');
+  if(q.get('cap')==='1')document.body.classList.add('caps');
   var f=q.get('f');
   if(f!==null){var fi=Math.max(0,Math.min(74,+f));t=START[fi];cur=-1;render();}
   else render();
