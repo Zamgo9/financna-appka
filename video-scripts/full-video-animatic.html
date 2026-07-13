@@ -204,6 +204,53 @@
   .frame.is-active .cpulse{animation:u-pop .6s cubic-bezier(.2,1.4,.3,1) .5s both,
     cpulse 1.9s ease-in-out 1.2s infinite}
   @keyframes cpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+  /* S3-F6: scale rocks side to side */
+  .frame.is-active .scales.rock .beamgrp{animation:seesaw 3.4s ease-in-out .6s infinite}
+  @keyframes seesaw{0%,100%{transform:rotate(11deg)}50%{transform:rotate(-11deg)}}
+  /* S4-F1: blackboard with chalk math being written */
+  .bboard{position:relative;width:min(48%,340px);background:#20342a;border:7px solid #8b6f47;
+    border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.5);padding:18px 20px 22px;
+    display:flex;flex-direction:column;gap:13px;overflow:hidden}
+  .bboard::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(80% 90% at 30% 20%,rgba(255,255,255,.05),transparent)}
+  .chalkline{font-family:var(--mono);font-weight:700;color:rgba(255,255,255,.92);
+    font-size:clamp(10px,1.8vw,15px);letter-spacing:.05em;white-space:nowrap;overflow:hidden;width:0}
+  .frame.is-active .cl1{animation:clw .75s steps(16,end) .4s both}
+  .frame.is-active .cl2{animation:clw .75s steps(18,end) 1.3s both}
+  .frame.is-active .cl3{animation:clw .75s steps(18,end) 2.2s both}
+  @keyframes clw{from{width:0}to{width:100%}}
+  .bpen{position:absolute;left:16px;top:8px;font-size:clamp(13px,2.4vw,20px);z-index:3}
+  .frame.is-active .bpen{animation:penpath 2.55s linear .4s both}
+  @keyframes penpath{0%{transform:translate(0,0)}29%{transform:translate(168px,4px)}
+    35%{transform:translate(0,33px)}64%{transform:translate(178px,37px)}
+    70%{transform:translate(0,66px)}100%{transform:translate(172px,70px)}}
+  /* S4-F4: green checks tick off TEAMS / DATA / PhDs */
+  .chk{display:inline-block;color:var(--green);font-weight:900;margin-left:.35em;opacity:0}
+  .frame.is-active .chk{animation:u-pop .4s cubic-bezier(.2,1.4,.3,1) var(--d,1s) both}
+  /* S4-F6: century market chart */
+  .cchart{position:relative;width:min(72%,520px)}
+  .cchart svg{width:100%;display:block;overflow:visible}
+  .cdip{transform-box:fill-box;transform-origin:center;opacity:0}
+  .frame.is-active .cdip{animation:u-pop .4s cubic-bezier(.2,1.4,.3,1) var(--d,2s) both}
+  .cdot2{transform-box:fill-box;transform-origin:center;opacity:0}
+  .frame.is-active .cdot2{animation:u-pop .4s 3.25s both,u-mpulse 1.3s ease-in-out 3.7s infinite}
+  .cyears{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;
+    letter-spacing:.14em;color:rgba(255,255,255,.55);margin-top:6px}
+  /* S4-F7: winner dots light up one by one */
+  .frame.is-active .dot.gold-late{animation:u-pop .45s cubic-bezier(.2,.8,.2,1) var(--d,0s) both,
+    goldon .5s cubic-bezier(.2,1.4,.3,1) var(--gd,1.5s) both}
+  @keyframes goldon{from{background:#39415c;box-shadow:none;transform:scale(1)}
+    30%{transform:scale(1.6)}to{background:var(--gold);box-shadow:0 0 14px var(--gold);transform:scale(1.15)}}
+  /* S4-F8: snail rides the T-bills line up to the money */
+  .snailhill{position:relative;width:min(62%,430px)}
+  .snailhill svg{width:100%;display:block;overflow:visible}
+  .snail{position:absolute;left:1%;bottom:16%;font-size:clamp(20px,4.4vw,36px);z-index:2}
+  .frame.is-active .snail{animation:snailride 4.05s linear .25s both}
+  @keyframes snailride{0%{transform:translate(0,0) rotate(-14deg)}100%{transform:translate(345px,-114px) rotate(-14deg)}}
+  .snailhill .wealth{position:absolute;right:-8%;top:-26%;font-size:clamp(18px,3.8vw,30px);opacity:0;z-index:3}
+  .frame.is-active .snailhill .wealth{animation:u-pop .5s cubic-bezier(.2,1.4,.3,1) 3.75s both}
+  .snailhill .tb{position:absolute;top:-9%;right:12%}
+  .snailhill .ts{position:absolute;bottom:23%;right:-4%;color:#8a8298}
   /* F5: the party popper keeps throwing confetti */
   .party{position:relative}
   .party .cf{position:absolute;left:56%;top:22%;width:7px;height:11px;border-radius:2px;opacity:0;pointer-events:none}
@@ -214,8 +261,9 @@
      Origin sits low so bottom on-screen text stays clear of the caption
      while the top grows into headroom. */
   .frame.fz{transform-origin:50% 74%}
-  /* keep source tags on-screen under the 13% push-in */
-  .frame.fz .src{right:8%;bottom:5.5%}
+  /* keep source tags on-screen under the 13% push-in: top-right corner,
+     clear of the caption box at the bottom */
+  .frame.fz .src{top:10%;bottom:auto;right:8%}
   .frame.fz.is-active{animation:u-zoomfr var(--zd,6s) cubic-bezier(.12,.66,.3,1) both}
   @keyframes u-zoomfr{from{transform:scale(1)}to{transform:scale(1.13)}}
   .monitor{position:relative;width:min(54%,380px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
@@ -694,14 +742,19 @@
         <div class="mid" data-anim="rise" style="--d:.8s">And let's be honest — <span class="c-green">it's exciting.</span></div></div></div>
 
       <div class="frame m-anti" data-i="17"><div class="center">
-        <div data-anim="pop"><svg class="scales tiltR" viewBox="0 0 200 170"><line x1="100" y1="30" x2="100" y2="150" stroke="#cbb8ff" stroke-width="5"/><rect x="70" y="150" width="60" height="10" rx="4" fill="#cbb8ff"/>
+        <div data-anim="pop"><svg class="scales tiltR rock" viewBox="0 0 200 170"><line x1="100" y1="30" x2="100" y2="150" stroke="#cbb8ff" stroke-width="5"/><rect x="70" y="150" width="60" height="10" rx="4" fill="#cbb8ff"/>
           <g class="beamgrp"><line x1="40" y1="44" x2="160" y2="44" stroke="#cbb8ff" stroke-width="5"/>
           <path d="M22 78 h36 l-8 20 h-20 z" fill="#22c55e"/><path d="M142 78 h36 l-8 20 h-20 z" fill="#ef4444"/></g><circle cx="100" cy="30" r="6" fill="#cbb8ff"/></svg></div>
         <div class="mid" data-anim="slam" style="--d:1.3s">So what's <span class="c-red">the catch?</span></div></div></div>
 
       <!-- ============================ SCENE 4 ============================ -->
       <div class="frame m-anti" data-i="18"><div class="center">
-        <div class="emoji" data-anim="drop">✏️</div>
+        <div class="bboard" data-anim="pop">
+          <span class="chalkline cl1">P(beat index) ≈ 1/10</span>
+          <span class="chalkline cl2">4% of stocks → all gains</span>
+          <span class="chalkline cl3">median stock &lt; T-bills</span>
+          <span class="bpen">✏️</span>
+        </div>
         <div class="mid" data-anim="rise" style="--d:.4s">The catch is math. And the math is <span class="c-red">brutal.</span></div></div></div>
 
       <div class="frame m-anti" data-i="19"><div class="center"><div class="kick" data-anim="fade">The scoreboard</div>
@@ -716,7 +769,7 @@
 
       <div class="frame m-anti" data-i="21"><div class="center">
         <div class="row"><div class="emoji" data-anim="zoom">🧍</div></div>
-        <div class="row tight"><span class="pill c-red" data-anim="drop">TEAMS</span><span class="pill c-red" data-anim="drop" style="--d:.2s">DATA</span><span class="pill c-red" data-anim="drop" style="--d:.4s">PhDs</span></div>
+        <div class="row tight"><span class="pill c-red" data-anim="drop" style="--d:2.9s">TEAMS<b class="chk" style="--d:3.45s">✓</b></span><span class="pill c-red" data-anim="drop" style="--d:3.7s">DATA<b class="chk" style="--d:4.25s">✓</b></span><span class="pill c-red" data-anim="drop" style="--d:4.5s">PhDs<b class="chk" style="--d:5.05s">✓</b></span></div>
         <div class="sm" data-anim="fade" style="--d:.7s">The professionals. And <b>nine of ten still lose.</b></div></div></div>
 
       <div class="frame m-anti" data-i="22"><div class="center">
@@ -724,22 +777,45 @@
         <div class="mid" data-anim="rise" style="--d:.3s">And for individual stocks — <span class="c-red">it gets worse.</span></div></div></div>
 
       <div class="frame m-amber" data-i="23"><div class="center">
-        <div class="chart" style="height:auto"><svg viewBox="0 0 400 60"><line x1="10" y1="30" x2="390" y2="30" stroke="#6b6480" stroke-width="3" stroke-dasharray="380" stroke-dashoffset="380" data-anim="draw" data-dur="1.1s"/></svg>
-          <div style="display:flex;justify-content:space-between"><span class="kick c-gold">1926</span><span class="kick">TODAY</span></div></div>
+        <div class="cchart"><svg viewBox="0 0 400 170">
+            <line x1="10" y1="40" x2="390" y2="40" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
+            <line x1="10" y1="80" x2="390" y2="80" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
+            <line x1="10" y1="120" x2="390" y2="120" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
+            <line x1="10" y1="158" x2="390" y2="158" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+            <path d="M10 152 L26 140 L34 156 L58 148 L86 130 L112 122 L134 127 L158 106 L172 111 L196 90 L214 95 L238 76 L252 83 L272 60 L288 67 L304 73 L318 54 L326 62 L344 38 L352 45 L372 24 L390 16"
+              fill="none" stroke="var(--gold)" stroke-width="3.5" stroke-linejoin="round"
+              stroke-dasharray="640" stroke-dashoffset="640" data-anim="draw" style="--dur:3s;--d:.35s"/>
+            <circle class="cdip" cx="34" cy="156" r="4" fill="var(--red)" style="--d:.75s"/>
+            <circle class="cdip" cx="304" cy="73" r="4" fill="var(--red)" style="--d:2.75s"/>
+            <circle class="cdip" cx="326" cy="62" r="4" fill="var(--red)" style="--d:2.95s"/>
+            <circle class="cdot2" cx="390" cy="16" r="5" fill="var(--green)"/>
+          </svg>
+          <div class="cyears"><span class="c-gold">1926</span><span>1950</span><span>1975</span><span>2000</span><span>TODAY</span></div></div>
         <div class="sm" data-anim="rise" style="--d:.6s">Every US stock since <b>1926</b> — a century of data.</div><div class="src">Bessembinder, 2018</div></div></div>
 
       <div class="frame m-amber" data-i="24"><div class="center">
-        <div class="grid-wrap" data-build="dots" data-n="100" data-gold="18,44,63,87" style="grid-template-columns:repeat(20,1fr);width:min(74%,520px)"></div>
+        <div class="grid-wrap" data-build="dots" data-n="100" data-gold="18,44,63,87" data-gold-slow="1" style="grid-template-columns:repeat(20,1fr);width:min(74%,520px)"></div>
         <div class="row"><div class="big c-gold"><span class="count" data-from="0" data-to="4" data-start="600" data-end="2400" data-suffix="%">0%</span></div>
           <div class="sm">of stocks made <b>all</b> the extra wealth.</div></div></div></div>
 
       <div class="frame m-amber" data-i="25"><div class="center">
-        <div class="row"><div class="col"><div class="dot" style="width:34px;height:34px" data-anim="fade">·</div><div class="kick">TYPICAL STOCK</div></div>
-          <div class="emoji" data-anim="left" style="--d:.5s">🐌</div><div class="kick c-gold" data-anim="pop" style="--d:.9s">T-BILLS WIN</div></div>
+        <div class="snailhill">
+          <svg viewBox="0 0 360 150">
+            <line x1="8" y1="142" x2="352" y2="142" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+            <path d="M10 126 L350 118" fill="none" stroke="#6b6480" stroke-width="3" stroke-dasharray="8 7"
+              data-anim="fade" style="--d:.5s;--dur:.8s"/>
+            <path d="M10 138 L350 34" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round"
+              stroke-dasharray="360" stroke-dashoffset="360" data-anim="draw" style="--dur:3.9s;--d:.25s"/>
+          </svg>
+          <span class="snail">🐌</span>
+          <span class="wealth">💰</span>
+          <span class="kick c-gold tb">T-BILLS</span>
+          <span class="kick ts">TYPICAL STOCK</span>
+        </div>
         <div class="sm" data-anim="rise" style="--d:.7s">The typical stock lost to <b>one-month government bills.</b></div></div></div>
 
       <div class="frame m-amber" data-i="26"><div class="center">
-        <div class="bars" style="height:min(42vh,230px);align-items:flex-end"><div class="bar bg-gold" data-anim="growy" style="height:40%;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:64%;--d:.15s;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:88%;--d:.3s;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:100%;--d:.45s;--dur:1s"><b>·</b></div></div>
+        <div class="bars" style="height:min(42vh,230px);align-items:flex-end"><div class="bar bg-gold" data-anim="growy" style="height:40%;--d:.3s;--dur:.9s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:64%;--d:1.1s;--dur:.9s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:88%;--d:1.9s;--dur:.9s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:100%;--d:2.7s;--dur:.9s"><b>·</b></div></div>
         <div class="sm" data-anim="rise" style="--d:.8s">All the gains come from a <span class="c-gold">handful of superstars.</span></div></div></div>
 
       <div class="frame m-anti" data-i="27"><div class="center">
@@ -1113,9 +1189,12 @@
 
     // dots
     [].slice.call(document.querySelectorAll('[data-build="dots"]')).forEach(function(el){
-      var n=+el.dataset.n, gold=(el.dataset.gold||'').split(',').map(Number);
-      for(var i=0;i<n;i++){var s=document.createElement('span');s.className='dot'+(gold.indexOf(i)>=0?' gold':'');
-        s.setAttribute('data-anim','pop');s.style.setProperty('--d',(i*0.01)+'s');el.appendChild(s);}});
+      var n=+el.dataset.n, gold=(el.dataset.gold||'').split(',').map(Number),
+          slow=el.dataset.goldSlow==='1', gk=0;
+      for(var i=0;i<n;i++){var s=document.createElement('span');var isG=gold.indexOf(i)>=0;
+        if(isG&&slow){s.className='dot gold-late';s.style.setProperty('--gd',(1.5+(gk++)*0.85)+'s');}
+        else{s.className='dot'+(isG?' gold':'');s.setAttribute('data-anim','pop');}
+        s.style.setProperty('--d',(i*0.01)+'s');el.appendChild(s);}});
     // tiles
     [].slice.call(document.querySelectorAll('[data-build="tiles"]')).forEach(function(el){
       var c=+el.dataset.cols,r=+el.dataset.rows,n=c*r,pick=el.dataset.pick,
