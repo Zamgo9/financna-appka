@@ -57,6 +57,7 @@
   .frame.is-active [data-anim="right"]{animation-name:u-right}
   .frame.is-active [data-anim="fade"]{animation-name:u-fade}
   .frame.is-active [data-anim="grow"]{animation-name:u-grow}
+  .frame.is-active [data-anim="growy"]{animation-name:u-growy}
   .frame.is-active [data-anim="draw"]{animation-name:u-draw}
   .frame.is-active [data-anim="fall"]{animation-name:u-fall;animation-timing-function:cubic-bezier(.6,0,.9,.5)}
   .frame.is-active [data-anim="zoom"]{animation-name:u-zoom}
@@ -70,6 +71,7 @@
   @keyframes u-right{from{opacity:0;transform:translateX(70px)}to{opacity:1;transform:none}}
   @keyframes u-fade{from{opacity:0}to{opacity:1}}
   @keyframes u-grow{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
+  @keyframes u-growy{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:scaleY(1)}}
   @keyframes u-draw{to{stroke-dashoffset:0}}
   @keyframes u-fall{0%,45%{transform:none;opacity:1}100%{transform:rotate(80deg) translateY(14px);opacity:.45}}
   @keyframes u-zoom{from{opacity:0;transform:scale(2.2);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
@@ -212,6 +214,8 @@
      Origin sits low so bottom on-screen text stays clear of the caption
      while the top grows into headroom. */
   .frame.fz{transform-origin:50% 74%}
+  /* keep source tags on-screen under the 13% push-in */
+  .frame.fz .src{right:8%;bottom:5.5%}
   .frame.fz.is-active{animation:u-zoomfr var(--zd,6s) cubic-bezier(.12,.66,.3,1) both}
   @keyframes u-zoomfr{from{transform:scale(1)}to{transform:scale(1.13)}}
   .monitor{position:relative;width:min(54%,380px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
@@ -735,7 +739,7 @@
         <div class="sm" data-anim="rise" style="--d:.7s">The typical stock lost to <b>one-month government bills.</b></div></div></div>
 
       <div class="frame m-amber" data-i="26"><div class="center">
-        <div class="bars"><div class="bar bg-gold" data-anim="grow" style="height:40%;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="grow" style="height:64%;--d:.15s;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="grow" style="height:88%;--d:.3s;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="grow" style="height:100%;--d:.45s;--dur:1s"><b>·</b></div></div>
+        <div class="bars" style="height:min(42vh,230px);align-items:flex-end"><div class="bar bg-gold" data-anim="growy" style="height:40%;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:64%;--d:.15s;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:88%;--d:.3s;--dur:1s"><b>·</b></div><div class="bar bg-gold" data-anim="growy" style="height:100%;--d:.45s;--dur:1s"><b>·</b></div></div>
         <div class="sm" data-anim="rise" style="--d:.8s">All the gains come from a <span class="c-gold">handful of superstars.</span></div></div></div>
 
       <div class="frame m-anti" data-i="27"><div class="center">
