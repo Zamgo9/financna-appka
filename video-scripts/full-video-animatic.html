@@ -204,9 +204,9 @@
   .frame.is-active .cpulse{animation:u-pop .6s cubic-bezier(.2,1.4,.3,1) .5s both,
     cpulse 1.9s ease-in-out 1.2s infinite}
   @keyframes cpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-  /* S3-F6: scale rocks side to side */
-  .frame.is-active .scales.rock .beamgrp{animation:seesaw 3.4s ease-in-out .6s infinite}
-  @keyframes seesaw{0%,100%{transform:rotate(11deg)}50%{transform:rotate(-11deg)}}
+  /* S3-F6: scale rocks side to side (higher specificity than the .tiltR rule it shares an element with) */
+  .frame.is-active .scales.tiltR.rock .beamgrp{animation:seesaw 3.4s ease-in-out .6s infinite!important}
+  @keyframes seesaw{0%,100%{transform:rotate(12deg)}50%{transform:rotate(-12deg)}}
   /* S4-F1: blackboard with chalk math being written */
   .bboard{position:relative;width:min(48%,340px);background:#20342a;border:7px solid #8b6f47;
     border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.5);padding:18px 20px 22px;
