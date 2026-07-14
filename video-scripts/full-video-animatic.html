@@ -362,6 +362,91 @@
     16%{box-shadow:0 12px 26px rgba(0,0,0,.55);filter:brightness(1)}
     100%{box-shadow:0 12px 26px rgba(0,0,0,.55);filter:brightness(1)}}
 
+  /* ============ SCENE 6 — the honest case FOR picking (mostly long shots) ============ */
+  /* F2 (i=44): a glow sweeps across the four reason pills */
+  .frame.is-active .s6pill{animation:u-rise .5s cubic-bezier(.2,.8,.2,1) var(--d,0s) both,s6glowcyc 4s ease-in-out var(--gc,0s) infinite}
+  @keyframes s6glowcyc{0%,100%{box-shadow:none;color:#fff;border-color:rgba(255,255,255,.28)}
+    7%{box-shadow:0 0 16px var(--green);color:var(--green);border-color:var(--green)}
+    18%{box-shadow:none;color:#fff;border-color:rgba(255,255,255,.28)}}
+  /* F3 (i=45): grad cap bobs, skill bars fill then the group breathes */
+  .frame.is-active .s6bob{animation:s5bob 2.2s ease-in-out .4s infinite}
+  .skillbars{display:flex;flex-direction:column;gap:clamp(6px,1.4vw,11px);width:min(44%,300px)}
+  .frame.is-active .skillbars{animation:s6breathe 2.6s ease-in-out 1.3s infinite}
+  @keyframes s6breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .sb{display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+  .sbl{font-family:var(--mono);font-size:clamp(7px,1.3vw,10px);letter-spacing:.15em;color:rgba(255,255,255,.65)}
+  .sbt{width:100%;height:clamp(8px,1.5vw,12px);background:#12331f;border:1px solid #1e5233;border-radius:6px;overflow:hidden}
+  .sbt i{display:block;height:100%;width:var(--w,80%);border-radius:6px;
+    background:linear-gradient(90deg,#12833c,#22c55e);transform-origin:left;transform:scaleX(0)}
+  .frame.is-active .sbt i{animation:s6fill .9s cubic-bezier(.3,.8,.3,1) var(--sbd,.5s) both}
+  @keyframes s6fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* F4 (i=46): the 5% slice keeps pulsing, flask bobs */
+  .s6donut{width:clamp(90px,20vw,150px)}
+  .frame.is-active .s6donut .seg{animation:u-fade .6s ease .3s both,s6segpulse 1.8s ease-in-out 1s infinite}
+  @keyframes s6segpulse{0%,100%{filter:drop-shadow(0 0 2px rgba(34,197,94,.5))}50%{filter:drop-shadow(0 0 12px rgba(34,197,94,1))}}
+  .frame.is-active .s6flask{animation:s5bob 1.8s ease-in-out .5s infinite}
+  /* F5 (i=47): a magnifier sweeps the row, the hidden gem glints */
+  .edgescan{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(8px,2.4vw,26px);padding:3% 6% 6%}
+  .edgescan .bld{font-size:clamp(26px,6vw,50px);opacity:.5}
+  .edgescan .gem{opacity:0}
+  .frame.is-active .edgescan .gem{animation:u-pop .5s cubic-bezier(.2,1.4,.3,1) 2.2s both,s6glint 1.6s ease-in-out 2.8s infinite}
+  @keyframes s6glint{0%,100%{filter:drop-shadow(0 0 3px rgba(245,179,1,.5));transform:scale(1)}
+    50%{filter:drop-shadow(0 0 16px rgba(245,179,1,1));transform:scale(1.14)}}
+  .edgescan .mag{position:absolute;top:0;font-size:clamp(30px,7vw,58px);z-index:3}
+  .frame.is-active .edgescan .mag{animation:s6sweep 4s ease-in-out .4s infinite}
+  @keyframes s6sweep{0%{transform:translateX(-130px) rotate(-6deg)}50%{transform:translateX(130px) rotate(6deg)}100%{transform:translateX(-130px) rotate(-6deg)}}
+  /* F6 (i=48): whale is stuck bobbing, the small fish swims freely */
+  .pond{display:flex;align-items:center;justify-content:center;gap:clamp(20px,7vw,80px)}
+  .frame.is-active .s6whale{animation:u-left .6s cubic-bezier(.2,.8,.2,1) both,s6wobble 3s ease-in-out 1s infinite}
+  @keyframes s6wobble{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+  .frame.is-active .s6fish{animation:u-right .6s cubic-bezier(.2,.8,.2,1) .3s both,s6swim 2.6s ease-in-out 1s infinite}
+  @keyframes s6swim{0%,100%{transform:translateX(0) scaleX(1)}25%{transform:translateX(24px) scaleX(1)}
+    50%{transform:translateX(24px) scaleX(-1)}75%{transform:translateX(-8px) scaleX(-1)}}
+  /* F7 (i=49): a control panel — the "your picks" toggle stays lit */
+  .toggles{display:flex;flex-direction:column;gap:clamp(8px,1.8vw,14px);width:min(48%,330px)}
+  .tgl{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:10px;
+    padding:clamp(6px,1.4vw,11px) clamp(10px,2vw,16px)}
+  .tgl .tgll{font-family:var(--mono);font-size:clamp(9px,1.7vw,14px);letter-spacing:.1em}
+  .tgl .sw{width:clamp(30px,6vw,46px);height:clamp(16px,3.4vw,26px);border-radius:999px;position:relative;flex:none}
+  .tgl .sw i{position:absolute;top:50%;width:44%;aspect-ratio:1;border-radius:50%;background:#fff;transform:translateY(-50%)}
+  .tgl.off .sw{background:#5a2330}.tgl.off .sw i{left:6%}.tgl.off .tgll{color:rgba(255,255,255,.5)}
+  .tgl.on .sw{background:#12833c}.tgl.on .sw i{left:52%}.tgl.on{border-color:var(--green)}
+  .frame.is-active .tgl{animation:u-rise .5s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
+  .frame.is-active .tgl.on{animation:u-rise .5s cubic-bezier(.2,.8,.2,1) .5s both,s6onglow 1.8s ease-in-out 1.1s infinite}
+  @keyframes s6onglow{0%,100%{box-shadow:0 0 0 rgba(34,197,94,0)}50%{box-shadow:0 0 18px rgba(34,197,94,.7)}}
+  /* F8 (i=50): loss/gain chips keep dropping into the baskets */
+  .taxrow{display:flex;justify-content:center;gap:clamp(30px,10vw,110px)}
+  .taxcol{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .taxcol .basket{font-size:clamp(28px,6vw,52px)}
+  .chip{position:absolute;top:24%;font-family:var(--mono);font-weight:900;font-size:clamp(12px,2.4vw,20px);
+    width:clamp(16px,3.2vw,26px);height:clamp(16px,3.2vw,26px);border-radius:50%;display:grid;place-items:center;opacity:0}
+  .chip.red{background:#8f1414;color:#fff}.chip.green{background:#12833c;color:#fff}
+  .frame.is-active .chip{animation:s6drop 1.8s ease-in var(--cd,0s) infinite}
+  @keyframes s6drop{0%{opacity:0;transform:translateY(-34px) scale(.6)}16%{opacity:1;transform:translateY(-12px) scale(1)}
+    70%{opacity:1;transform:translateY(30px) scale(1)}100%{opacity:0;transform:translateY(46px) scale(.7)}}
+  /* F9 (i=51): wind gusts blow across, the holder leans but stays put */
+  .storm{position:relative;display:grid;place-items:center;padding:3% 12%}
+  .storm .emoji{position:relative;z-index:2}
+  .frame.is-active .s6hold{animation:u-pop .5s cubic-bezier(.2,1.4,.3,1) both,s6lean 1.4s ease-in-out .8s infinite}
+  @keyframes s6lean{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  .storm .gust{position:absolute;font-size:clamp(20px,4.4vw,38px);opacity:0;z-index:1}
+  .storm .g1{top:8%}.storm .g2{top:42%}.storm .g3{top:76%}
+  .frame.is-active .storm .gust{animation:s6gust 1.5s linear var(--gd,0s) infinite}
+  @keyframes s6gust{0%{opacity:0;transform:translateX(-220px)}20%{opacity:.9}80%{opacity:.9}100%{opacity:0;transform:translateX(220px)}}
+  /* F10 (i=52): a marker rides the V-recovery, diamond hands keep beating */
+  .frame.is-active .s6diamond{animation:u-slam .6s cubic-bezier(.2,1.4,.3,1) 1s both,hbeat 1.4s ease-in-out 1.9s infinite}
+  .s6rider{transform-box:fill-box;transform-origin:center}
+  .frame.is-active .s6rider{animation:s6ride 3.4s ease-in-out .6s infinite}
+  @keyframes s6ride{0%{transform:translate(0,0)}30%{transform:translate(60px,52px)}60%{transform:translate(120px,20px)}100%{transform:translate(180px,-22px)}}
+  /* F11 (i=53): the cocky "I'M SMART" card wobbles, A MOOD tag pulses */
+  .moodwrap{display:flex;flex-direction:column;align-items:center;gap:clamp(12px,2.8vw,20px);padding-top:2%}
+  .frame.is-active .s6wobble{animation:s5stampin .55s cubic-bezier(.2,1.4,.3,1) .3s both,s6cocky 2.2s ease-in-out 1s infinite}
+  @keyframes s6cocky{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(-3deg) translateY(-4px)}}
+  .moodwrap .moodtag{font-family:var(--mono);font-weight:700;color:var(--red);
+    border:2px solid var(--red);border-radius:6px;padding:2px 9px;font-size:clamp(10px,1.9vw,15px);opacity:0}
+  .frame.is-active .moodwrap .moodtag{animation:u-pop .4s cubic-bezier(.2,1.4,.3,1) 1.4s both,s5gappulse 1.5s ease-in-out 2s infinite}
+
   /* generic slow push-in for shots > 4 s (class added by JS from DUR).
      Origin sits low so bottom on-screen text stays clear of the caption
      while the top grows into headroom. */
@@ -1058,44 +1143,65 @@
         <div class="mid" data-anim="rise" style="--d:.7s">Never pick a stock? <span class="c-gold">Not so fast.</span></div></div></div>
 
       <div class="frame m-pro" data-i="44"><div class="center"><div class="kick" data-anim="fade">The honest case</div>
-        <div class="row tight"><span class="pill" data-anim="rise">1</span><span class="pill" data-anim="rise" style="--d:.15s">2</span><span class="pill" data-anim="rise" style="--d:.3s">3</span><span class="pill" data-anim="rise" style="--d:.45s">4</span></div>
+        <div class="row tight"><span class="pill s6pill" style="--d:0s;--gc:.6s">1</span><span class="pill s6pill" style="--d:.15s;--gc:1.6s">2</span><span class="pill s6pill" style="--d:.3s;--gc:2.6s">3</span><span class="pill s6pill" style="--d:.45s;--gc:3.6s">4</span></div>
         <div class="mid" data-anim="rise" style="--d:.6s">Four <span class="c-green">honest reasons</span> to pick.</div></div></div>
 
       <div class="frame m-pro" data-i="45"><div class="center"><div class="num" data-anim="fade">One · Education</div>
-        <div class="row"><div class="emoji" data-anim="drop">🎓</div><div class="emoji s2" data-anim="pop" style="--d:.3s">📊</div><div class="emoji s2" data-anim="pop" style="--d:.5s">🧠</div></div>
+        <div class="row">
+          <div class="emoji s6bob">🎓</div>
+          <div class="skillbars">
+            <div class="sb"><span class="sbl">ACCOUNTING</span><div class="sbt"><i style="--w:82%;--sbd:.6s"></i></div></div>
+            <div class="sb"><span class="sbl">VALUATION</span><div class="sbt"><i style="--w:72%;--sbd:1s"></i></div></div>
+            <div class="sb"><span class="sbl">PSYCHOLOGY</span><div class="sbt"><i style="--w:90%;--sbd:1.4s"></i></div></div>
+          </div></div>
         <div class="sm" data-anim="rise" style="--d:.7s">A small real-money portfolio <b>teaches you fast.</b></div></div></div>
 
       <div class="frame m-pro" data-i="46"><div class="center">
-        <div class="row"><svg viewBox="0 0 120 120" style="width:clamp(90px,20vw,150px)"><circle cx="60" cy="60" r="50" fill="none" stroke="#2b3350" stroke-width="16"/><circle cx="60" cy="60" r="50" fill="none" stroke="#22c55e" stroke-width="16" stroke-dasharray="16 314" stroke-dashoffset="0" transform="rotate(-90 60 60)" data-anim="fade"/></svg>
-          <div class="col"><span class="emoji s2" data-anim="pop">🧪</span><span class="mini">5% tuition</span></div></div>
+        <div class="row"><svg class="s6donut" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#2b3350" stroke-width="16"/><circle class="seg" cx="60" cy="60" r="50" fill="none" stroke="#22c55e" stroke-width="16" stroke-dasharray="16 314" stroke-dashoffset="0" transform="rotate(-90 60 60)" opacity="0"/><text x="60" y="66" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="20" font-weight="700">5%</text></svg>
+          <div class="col"><span class="emoji s2 s6flask">🧪</span><span class="mini">tuition</span></div></div>
         <div class="sm" data-anim="rise" style="--d:.7s">A <span class="c-green">5% "tuition"</span> makes you smarter with the 95%.</div></div></div>
 
       <div class="frame m-pro" data-i="47"><div class="center"><div class="num" data-anim="fade">Two · A real edge</div>
-        <div class="row"><div class="emoji" data-anim="left">🔍</div><span class="emoji s2" style="opacity:.4">🏢</span><span class="emoji s3 c-gold" data-anim="pop" style="--d:.6s">🏚️</span></div>
+        <div class="edgescan">
+          <span class="bld">🏢</span><span class="bld">🏬</span><span class="bld gem">💎</span><span class="bld">🏦</span><span class="bld">🏢</span>
+          <span class="mag">🔍</span></div>
         <div class="sm" data-anim="rise" style="--d:.7s">Edge exists — <b>where the pros aren't looking.</b></div></div></div>
 
       <div class="frame m-pro" data-i="48"><div class="center">
-        <div class="row"><div class="col"><div class="emoji" data-anim="left">🐋</div><span class="mini c-red">can't fit</span></div><div class="col"><div class="emoji s2" data-anim="right" style="--d:.4s">🐟</div><span class="mini c-green">swims in</span></div></div>
+        <div class="pond">
+          <div class="col"><div class="emoji s6whale">🐋</div><span class="mini c-red">can't fit</span></div>
+          <div class="col"><div class="emoji s2 s6fish">🐟</div><span class="mini c-green">swims in</span></div></div>
         <div class="sm" data-anim="rise" style="--d:.7s">Big funds can't buy tiny companies. <b>You can.</b></div></div></div>
 
       <div class="frame m-pro" data-i="49"><div class="center"><div class="num" data-anim="fade">Three · Control</div>
-        <div class="row tight"><span class="pill c-red" data-anim="rise">🚫 🛢️</span><span class="pill c-red" data-anim="rise" style="--d:.2s">🚫 🚬</span><span class="pill c-green" data-anim="rise" style="--d:.4s">✓ your picks</span></div>
+        <div class="toggles">
+          <div class="tgl off" style="--d:0s"><span class="tgll">🛢️ OIL</span><span class="sw"><i></i></span></div>
+          <div class="tgl off" style="--d:.2s"><span class="tgll">🚬 TOBACCO</span><span class="sw"><i></i></span></div>
+          <div class="tgl on"><span class="tgll">✓ YOUR PICKS</span><span class="sw"><i></i></span></div></div>
         <div class="sm" data-anim="rise" style="--d:.6s">You choose exactly <b>what you own.</b></div></div></div>
 
       <div class="frame m-pro" data-i="50"><div class="center">
-        <div class="row"><div class="emoji" data-anim="pop">🧾</div><span class="emoji s2" data-anim="left" style="--d:.4s">→</span><div class="emoji" data-anim="right" style="--d:.6s">⛵</div></div>
+        <div class="taxrow">
+          <div class="taxcol"><span class="kick c-red">HARVEST LOSSES</span><div class="basket">🧺</div>
+            <span class="chip red" style="--cd:0s">−</span><span class="chip red" style="--cd:.6s">−</span><span class="chip red" style="--cd:1.2s">−</span></div>
+          <div class="taxcol"><span class="kick c-green">TIME GAINS</span><div class="basket">📈</div>
+            <span class="chip green" style="--cd:.3s">+</span><span class="chip green" style="--cd:.9s">+</span></div></div>
         <div class="sm" data-anim="rise" style="--d:.8s">And manage <span class="c-green">taxes</span> position by position.</div><div class="src">varies by country</div></div></div>
 
       <div class="frame m-pro" data-i="51"><div class="center"><div class="num" data-anim="fade">Four · Commitment</div>
-        <div class="row"><span class="mini">💨</span><div class="emoji" data-anim="pop" style="--d:.3s">🧍🚩</div><span class="mini">💨</span></div>
+        <div class="storm">
+          <span class="gust g1" style="--gd:0s">💨</span><span class="gust g2" style="--gd:.5s">💨</span><span class="gust g3" style="--gd:1s">💨</span>
+          <div class="emoji s6hold">🧍🚩</div></div>
         <div class="sm" data-anim="rise" style="--d:.7s">People who <b>love their picks</b> hold through crashes.</div></div></div>
 
       <div class="frame m-pro" data-i="52"><div class="center">
-        <div class="row"><div class="chart" style="width:44%"><svg viewBox="0 0 200 100"><path d="M10 30 L70 85 L130 40 L190 20" stroke="#22c55e" stroke-width="4" fill="none" stroke-dasharray="300" stroke-dashoffset="300" data-anim="draw" data-dur="1.3s"/></svg></div><div class="emoji" data-anim="slam" style="--d:1s">💎</div></div>
+        <div class="row"><div class="chart" style="width:46%"><svg viewBox="0 0 200 110"><path d="M10 40 L70 92 L130 60 L190 18" stroke="#22c55e" stroke-width="4" fill="none" stroke-dasharray="320" stroke-dashoffset="320" data-anim="draw" style="--dur:1.6s;--d:.3s"/><circle class="s6rider" cx="10" cy="40" r="5" fill="#22c55e"/></svg></div><div class="emoji s6diamond">💎</div></div>
         <div class="mid" data-anim="rise" style="--d:.8s">The best behavior is <span class="c-green">not selling in panic.</span></div></div></div>
 
       <div class="frame m-anti" data-i="53"><div class="center">
-        <div class="stamp c-red" data-anim="slam" style="font-size:clamp(16px,4vw,30px)">"I'M SMART" 🃏</div>
+        <div class="moodwrap">
+          <div class="stamp c-red s6wobble" style="font-size:clamp(16px,4vw,30px)">"I'M SMART" 🃏</div>
+          <span class="moodtag">😤 A MOOD</span></div>
         <div class="mid" data-anim="rise" style="--d:.7s">Not on the list. That's not a strategy — <span class="c-red">it's a mood.</span></div></div></div>
 
       <!-- ============================ SCENE 7 ============================ -->
