@@ -496,6 +496,8 @@
     100%{opacity:0;transform:translate(16px,-36px) scale(1.15)}}
   /* S8-F2 (i=77): title sits at the top so it never covers the forking paths */
   .pathtitle{position:absolute;top:5%;left:0;right:0;z-index:8;text-align:center;padding:0 6%}
+  /* S9: the subscribe CTA keeps breathing */
+  .frame.is-active .subpulse{animation:u-slam .6s cubic-bezier(.2,1.4,.3,1) both,cpulse 1.2s ease-in-out .8s infinite}
 
   /* generic slow push-in for shots > 4 s (class added by JS from DUR).
      Origin sits low so bottom on-screen text stays clear of the caption
@@ -1456,37 +1458,71 @@
       <div class="frame m-brand" data-i="87"><div class="center">
         <div class="mid" data-anim="slam">That's the <span class="c-brand">whole trick.</span></div></div></div>
 
-      <!-- ============================ SCENE 9 ============================ -->
+      <!-- ============================ SCENE 9 (13 quick cuts, max 5 s) ============================ -->
       <div class="frame" data-i="88"><div class="center">
-        <div data-anim="pop"><svg class="scales" viewBox="0 0 200 170"><line x1="100" y1="30" x2="100" y2="150" stroke="#cbb8ff" stroke-width="5"/><rect x="70" y="150" width="60" height="10" rx="4" fill="#cbb8ff"/>
+        <div data-anim="pop"><svg class="scales tiltR rock" viewBox="0 0 200 170"><line x1="100" y1="30" x2="100" y2="150" stroke="#cbb8ff" stroke-width="5"/><rect x="70" y="150" width="60" height="10" rx="4" fill="#cbb8ff"/>
           <g class="beamgrp"><line x1="40" y1="44" x2="160" y2="44" stroke="#cbb8ff" stroke-width="5"/><path d="M22 78 h36 l-8 20 h-20 z" fill="#22c55e"/><path d="M142 78 h36 l-8 20 h-20 z" fill="#ef4444"/></g><circle cx="100" cy="30" r="6" fill="#cbb8ff"/></svg></div>
         <div class="mid" data-anim="rise" style="--d:.5s">So — is stock picking <span class="c-brand">a good idea?</span></div></div></div>
 
       <div class="frame m-anti" data-i="89"><div class="center">
-        <div data-anim="pop"><svg class="scales tiltR" viewBox="0 0 200 170"><line x1="100" y1="30" x2="100" y2="150" stroke="#cbb8ff" stroke-width="5"/><rect x="70" y="150" width="60" height="10" rx="4" fill="#cbb8ff"/>
-          <g class="beamgrp"><line x1="40" y1="44" x2="160" y2="44" stroke="#cbb8ff" stroke-width="5"/><path d="M22 78 h36 l-8 20 h-20 z" fill="#22c55e"/><path d="M142 78 h36 l-8 20 h-20 z" fill="#ef4444"/></g><circle cx="100" cy="30" r="6" fill="#cbb8ff"/></svg></div>
-        <div class="row"><div class="big c-red"><span class="count" data-from="0" data-to="90" data-start="500" data-end="2200" data-suffix="%">0%</span></div><div class="sm">To get rich? For most — <b>no.</b></div></div></div></div>
+        <div class="row"><span class="emoji" data-anim="pop">🤑</span><span class="emoji s2 s5glow" data-anim="pop" style="--d:.2s">💰</span></div>
+        <div class="mid" data-anim="rise" style="--d:.3s">As a plan to <span class="c-gold">get rich?</span></div></div></div>
 
-      <div class="frame m-pro" data-i="90"><div class="center">
-        <div class="row"><div class="emoji" data-anim="pop">🛰️</div><span class="emoji s2 c-gold" data-anim="slam" style="--d:.5s">✨</span></div>
-        <div class="mid" data-anim="rise" style="--d:.7s">As a hobby &amp; a small satellite? <span class="c-green">Absolutely yes.</span></div></div></div>
+      <div class="frame m-anti" data-i="90"><div class="center">
+        <div class="row"><div class="big c-red"><span class="count" data-from="0" data-to="90" data-start="200" data-end="1600" data-suffix="%">0%</span></div>
+          <div class="stamp c-red s5pulse">NO</div></div>
+        <div class="sm" data-anim="rise" style="--d:.5s">For <b>9 out of 10</b> people — honestly, no.</div></div></div>
 
-      <div class="frame m-brand" data-i="91"><div class="center">
-        <div class="row"><div class="system" style="width:min(34%,210px)" data-anim="pop"><div class="planet">CORE</div></div><span class="emoji s2" data-anim="right" style="--d:.6s">🕹️</span></div>
-        <div class="sm" data-anim="rise" style="--d:.7s">Build the machine <b>first.</b> Then play — with money you can lose.</div></div></div>
+      <div class="frame m-pro" data-i="91"><div class="center">
+        <div class="row">
+          <div class="col"><span class="emoji s2" data-anim="pop">🎨</span><span class="kick c-green">HOBBY</span></div>
+          <div class="col"><span class="emoji s2" data-anim="pop" style="--d:.2s">🎓</span><span class="kick c-green">CLASSROOM</span></div>
+          <div class="col"><div class="system" style="width:clamp(80px,17vw,140px)"><div class="orbit o1"><span class="moon"></span></div><div class="planet" style="inset:32%">CORE</div></div><span class="kick c-brand">SATELLITE</span></div></div>
+        <div class="sm" data-anim="rise" style="--d:.6s">A hobby, a classroom, a small satellite around a <b>boring core?</b></div></div></div>
 
-      <div class="frame m-brand" data-i="92"><div class="center">
-        <div class="chart"><svg viewBox="0 0 300 140"><path d="M10 125 C 90 120, 150 80, 290 15" stroke="#22c55e" stroke-width="5" fill="none" stroke-dasharray="420" stroke-dashoffset="420" data-anim="draw" data-dur="2s"/>
-          <text x="70" y="115" fill="#9a92ac" font-size="11" font-family="monospace"><tspan>10y</tspan></text><text x="150" y="80" fill="#9a92ac" font-size="11" font-family="monospace">20y</text><text x="250" y="30" fill="#22c55e" font-size="11" font-family="monospace">30y</text></svg></div>
-        <div class="mid" data-anim="rise" style="--d:1.2s">The market rewards the <span class="c-green">most patient</span> investor.</div></div></div>
+      <div class="frame m-pro" data-i="92"><div class="center">
+        <div class="big c-green" data-anim="slam">YES.</div>
+        <div class="sm" data-anim="rise" style="--d:.3s">Absolutely.</div></div></div>
 
       <div class="frame m-brand" data-i="93"><div class="center">
-        <div class="row"><span class="pill c-red" data-anim="left" style="text-decoration:line-through">YOLO BUY</span><span class="emoji s2" data-anim="pop" style="--d:.4s">🗑️</span></div>
-        <div class="subscribe" data-anim="slam" style="--d:.8s">▶ SUBSCRIBE</div></div></div>
+        <div class="row"><span class="emoji s2" data-anim="left">🔧</span><div class="system grow-pulse" style="width:clamp(90px,18vw,150px)"><div class="planet">CORE</div></div></div>
+        <div class="mid" data-anim="rise" style="--d:.4s">Build the machine <span class="c-brand">first.</span></div></div></div>
 
       <div class="frame m-brand" data-i="94"><div class="center">
+        <div class="row"><div class="emoji s6bob">🕹️</div><span class="pill c-gold" data-anim="rise" style="--d:.5s">money you can afford to lose</span></div>
+        <div class="sm" data-anim="rise" style="--d:.7s">Then play — with money you can <b>afford to lose.</b></div></div></div>
+
+      <div class="frame m-brand" data-i="95"><div class="center">
+        <div class="row"><span class="emoji" data-anim="pop">🧠</span><span class="pill c-red" data-anim="rise" style="--d:.5s;text-decoration:line-through">SMARTEST</span></div>
+        <div class="sm" data-anim="rise" style="--d:.7s">The market doesn't reward the <b>smartest</b> investor…</div></div></div>
+
+      <div class="frame m-brand" data-i="96"><div class="center">
+        <div class="gchart" style="width:clamp(240px,46vw,440px)"><svg viewBox="0 0 300 150">
+          <g stroke="rgba(255,255,255,.07)" stroke-width="1"><line x1="20" y1="40" x2="290" y2="40"/><line x1="20" y1="70" x2="290" y2="70"/><line x1="20" y1="100" x2="290" y2="100"/></g>
+          <line x1="20" y1="12" x2="20" y2="130" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+          <line x1="20" y1="130" x2="290" y2="130" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+          <path d="M24 124 C 100 118, 160 80, 286 16" stroke="#22c55e" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="400" stroke-dashoffset="400" data-anim="draw" style="--dur:1.5s;--d:.15s"/>
+          <text x="80" y="145" fill="#9a92ac" font-size="11" font-family="monospace" text-anchor="middle">10y</text>
+          <text x="170" y="145" fill="#9a92ac" font-size="11" font-family="monospace" text-anchor="middle">20y</text>
+          <text x="272" y="145" fill="#22c55e" font-size="11" font-family="monospace" font-weight="700" text-anchor="middle">30y</text></svg></div>
+        <div class="mid" data-anim="rise" style="--d:.5s">It rewards the <span class="c-green">most patient</span> one.</div></div></div>
+
+      <div class="frame m-brand" data-i="97"><div class="center">
+        <div class="row"><span class="pill c-red" data-anim="left" style="text-decoration:line-through">ONE BAD TRADE</span><span class="emoji s2" data-anim="pop" style="--d:.4s">🗑️</span></div>
+        <div class="row"><span class="emoji s2 s5glow" data-anim="pop" style="--d:.9s">💰</span><span class="pill c-green" data-anim="rise" style="--d:1.1s">ALREADY PAID FOR ITSELF</span></div>
+        <div class="sm" data-anim="rise" style="--d:1.4s">Saved you from <b>one bad trade?</b> It already paid for itself.</div></div></div>
+
+      <div class="frame m-brand" data-i="98"><div class="center">
+        <div class="subscribe subpulse">▶ SUBSCRIBE</div>
+        <div class="sm" data-anim="rise" style="--d:.5s">…for the next one.</div></div></div>
+
+      <div class="frame m-brand" data-i="99"><div class="center">
+        <div class="emoji s6bob">💬</div>
+        <div class="mid" data-anim="rise" style="--d:.3s">Tell me in the <span class="c-brand">comments</span> 👇</div></div></div>
+
+      <div class="frame m-brand" data-i="100"><div class="center">
         <div class="row"><div class="col"><span class="emoji s2" data-anim="left">💬</span><span class="kick c-gold">BEST PICK?</span></div><div class="col"><span class="emoji s2" data-anim="right" style="--d:.3s">💬</span><span class="kick c-red">WORST PICK?</span></div></div>
-        <div class="sm" data-anim="rise" style="--d:.7s">Tell me in the comments 👇</div></div></div>
+        <div class="sm" data-anim="rise" style="--d:.6s">What's the <span class="c-gold">best</span> — or <span class="c-red">worst</span> — stock you've ever picked?</div></div></div>
 
       <div class="caption"><span id="cap"></span></div>
       <div class="grain"></div>
@@ -1527,7 +1563,7 @@
     4.66,4.01,1.24, 1.77,2.57,4.16, 2.42,3.48, 4.69, 2.39,4.82, 2.70,4.13, 2.97,2.58, 1.58,2.84,2.77, 3.11,2.17, 4.22,3.07,
     4.00,2.38,3.05, 4.54,3.63, 3.05,2.24, 3.53,3.23, 3.26,4.06,
     3.23,2.00, 2.20, 2.64,4.62, 4.16,2.61, 4.93, 3.60,2.25, 4.07,1.73,
-    2.39,4.28,6.33,5.71,5.82,6.72,5.13].map(function(s){return Math.round(s*1000);});
+    2.39, 1.57,2.71, 4.87,1.46, 1.83,3.88, 3.44,2.38, 4.65,2.07, 1.59,3.54].map(function(s){return Math.round(s*1000);});
   var CAPS=[
     "In 1997, one thousand dollars in Amazon stock became roughly two million dollars today.",
     "Stories like that are why everyone wants to pick stocks.",
@@ -1618,12 +1654,18 @@
     "You get the upside of curiosity, with the safety of the average.",
     "That’s the whole trick.",
     "So — is stock picking a good idea?",
-    "As a plan to get rich? For nine out of ten people, honestly, no.",
-    "As a hobby, a classroom, and a small satellite around a boring core? Absolutely yes.",
-    "Build the machine first. Then, if you still want to — play the game with money you can afford to lose.",
-    "Because the market doesn’t reward the smartest investor. It rewards the most patient one.",
-    "If this saved you from one bad trade, it already paid for itself. Subscribe for the next one.",
-    "And tell me in the comments: what’s the best — or worst — stock you’ve ever picked?"
+    "As a plan to get rich?",
+    "For nine out of ten people, honestly, no.",
+    "As a hobby, a classroom, and a small satellite around a boring core?",
+    "Absolutely yes.",
+    "Build the machine first.",
+    "Then, if you still want to — play the game with money you can afford to lose.",
+    "Because the market doesn’t reward the smartest investor…",
+    "…it rewards the most patient one.",
+    "If this saved you from one bad trade, it already paid for itself.",
+    "Subscribe for the next one.",
+    "And tell me in the comments:",
+    "what’s the best — or worst — stock you’ve ever picked?"
   ];
   var LABELS=["Amazon burst","Glowing eyes","The flip","The bar chart","Genius / gambler","The fork",
     "Define the game","Pick one company","The index basket","“I’ll beat it”","Take the average","The scales",
@@ -1633,7 +1675,7 @@
     "Not so fast","The honest case","Here are four","1 · Education","Small portfolio","Skills fill fast","5% tuition","Smarter with 95%","2 · Real edge","Whale can’t fit","Rare advantage","3 · Control","Oil off, picks on","Taxes by position","Harvest & time","4 · Commitment","Holds through crashes","Feels nothing","Not picking well","No panic-sell","“I’m smart” 🃏","A mood",
     "The checklist","Enjoy 10-Ks","Actually enjoy","Stomach −40%","5–10 yr money","Track honestly","Losers included","Failed? Not an insult","The cheap cure","Boring & automatic","Tortoise wins",
     "Don’t choose a side","The middle path","Core & satellite","The core 80–95%","Auto, every month","Satellites 5–20%","Ideas & education","Picks moonshot","Crash? Still safe","Core compounds","Curiosity + safety","The whole trick",
-    "The verdict?","Get rich? No","Hobby? Yes","Build first","Patience wins","One bad trade","The comments"];
+    "The verdict?","Get rich?","9 of 10 — no","Hobby & satellite","Absolutely yes","Build first","Then play","Not the smartest","Most patient wins","Paid for itself","Subscribe","The comments","Best or worst?"];
   var CHAP=[[0,"01","Cold Open"],[6,"02","The Game"],[12,"03","The Allure"],[18,"04","The Data"],
     [30,"05","Why It’s Hard"],[43,"06","The Case For"],[65,"07","Who Should"],[76,"08","Core & Satellite"],[88,"09","Verdict"]];
 
